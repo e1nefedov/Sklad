@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище skald_dbModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="klients">
+    <Key>
+      <PropertyRef Name="id_klient" />
+    </Key>
+    <Property Name="id_klient" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="addres" Type="varchar" MaxLength="50" />
+    <Property Name="contact" Type="varchar" MaxLength="50" />
+    <Property Name="INN" Type="int" />
+    <Property Name="Raschetniy_schet" Type="int" />
+  </EntityType>
+  <EntityType Name="postavlenniy_tovar">
+    <Key>
+      <PropertyRef Name="id_postavlenniy_tovar" />
+    </Key>
+    <Property Name="id_postavlenniy_tovar" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="count" Type="int" />
+    <Property Name="date_postav" Type="date" />
+    <Property Name="id_postavshik" Type="int" />
+    <Property Name="id_prihodnoy_nakladnoy" Type="int" />
+    <Property Name="price_one_product" Type="real" />
+    <Property Name="summ" Type="real" />
+  </EntityType>
+  <EntityType Name="postavshiki">
+    <Key>
+      <PropertyRef Name="id_postavshiki" />
+    </Key>
+    <Property Name="id_postavshiki" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="addres" Type="varchar" MaxLength="50" />
+    <Property Name="contact" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="prodanniy_tovar">
+    <Key>
+      <PropertyRef Name="id_prodanniy_tovar" />
+    </Key>
+    <Property Name="id_prodanniy_tovar" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="count" Type="int" />
+    <Property Name="id_klient" Type="int" />
+    <Property Name="date_prodazhi" Type="date" />
+    <Property Name="perevozchik" Type="varchar" MaxLength="50" />
+    <Property Name="sum" Type="real" />
+    <Property Name="id_tovarnoy_nakladnoy" Type="int" />
+    <Property Name="id_postavlenniy_tovar" Type="int" />
+    <Property Name="price_one" Type="real" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tovar_ nalichii">
+    <Key>
+      <PropertyRef Name="id_tovar_vnalichii" />
+    </Key>
+    <Property Name="id_tovar_vnalichii" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="price" Type="real" />
+    <Property Name="count" Type="int" />
+    <Property Name="id_postavlenniy_tovar" Type="int" />
+  </EntityType>
+  <Association Name="FK_postavlenniy_tovar_postavshiki">
+    <End Role="postavshiki" Type="Self.postavshiki" Multiplicity="0..1" />
+    <End Role="postavlenniy_tovar" Type="Self.postavlenniy_tovar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="postavshiki">
+        <PropertyRef Name="id_postavshiki" />
+      </Principal>
+      <Dependent Role="postavlenniy_tovar">
+        <PropertyRef Name="id_postavshik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_prodanniy_tovar_klients">
+    <End Role="klients" Type="Self.klients" Multiplicity="0..1" />
+    <End Role="prodanniy_tovar" Type="Self.prodanniy_tovar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="klients">
+        <PropertyRef Name="id_klient" />
+      </Principal>
+      <Dependent Role="prodanniy_tovar">
+        <PropertyRef Name="id_klient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_prodanniy_tovar_postavlenniy_tovar">
+    <End Role="postavlenniy_tovar" Type="Self.postavlenniy_tovar" Multiplicity="1" />
+    <End Role="prodanniy_tovar" Type="Self.prodanniy_tovar" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="postavlenniy_tovar">
+        <PropertyRef Name="id_postavlenniy_tovar" />
+      </Principal>
+      <Dependent Role="prodanniy_tovar">
+        <PropertyRef Name="id_prodanniy_tovar" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tovar_ nalichii_postavlenniy_tovar">
+    <End Role="postavlenniy_tovar" Type="Self.postavlenniy_tovar" Multiplicity="1" />
+    <End Role="tovar_ nalichii" Type="Self.tovar_ nalichii" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="postavlenniy_tovar">
+        <PropertyRef Name="id_postavlenniy_tovar" />
+      </Principal>
+      <Dependent Role="tovar_ nalichii">
+        <PropertyRef Name="id_tovar_vnalichii" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище skald_dbModelContainer">
+    <EntitySet Name="klients" EntityType="Self.klients" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="postavlenniy_tovar" EntityType="Self.postavlenniy_tovar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="postavshiki" EntityType="Self.postavshiki" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="prodanniy_tovar" EntityType="Self.prodanniy_tovar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tovar_ nalichii" EntityType="Self.tovar_ nalichii" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_postavlenniy_tovar_postavshiki" Association="Self.FK_postavlenniy_tovar_postavshiki">
+      <End Role="postavshiki" EntitySet="postavshiki" />
+      <End Role="postavlenniy_tovar" EntitySet="postavlenniy_tovar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_prodanniy_tovar_klients" Association="Self.FK_prodanniy_tovar_klients">
+      <End Role="klients" EntitySet="klients" />
+      <End Role="prodanniy_tovar" EntitySet="prodanniy_tovar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_prodanniy_tovar_postavlenniy_tovar" Association="Self.FK_prodanniy_tovar_postavlenniy_tovar">
+      <End Role="postavlenniy_tovar" EntitySet="postavlenniy_tovar" />
+      <End Role="prodanniy_tovar" EntitySet="prodanniy_tovar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tovar_ nalichii_postavlenniy_tovar" Association="Self.FK_tovar_ nalichii_postavlenniy_tovar">
+      <End Role="postavlenniy_tovar" EntitySet="postavlenniy_tovar" />
+      <End Role="tovar_ nalichii" EntitySet="tovar_ nalichii" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

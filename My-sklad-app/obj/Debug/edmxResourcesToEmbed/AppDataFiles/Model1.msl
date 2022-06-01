@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище skald_dbModelContainer" CdmEntityContainer="skald_dbEntities">
+    <EntitySetMapping Name="klients">
+      <EntityTypeMapping TypeName="skald_dbModel.klients">
+        <MappingFragment StoreEntitySet="klients">
+          <ScalarProperty Name="Raschetniy_schet" ColumnName="Raschetniy_schet" />
+          <ScalarProperty Name="INN" ColumnName="INN" />
+          <ScalarProperty Name="id_klient" ColumnName="id_klient" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="addres" ColumnName="addres" />
+          <ScalarProperty Name="contact" ColumnName="contact" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="postavlenniy_tovar">
+      <EntityTypeMapping TypeName="skald_dbModel.postavlenniy_tovar">
+        <MappingFragment StoreEntitySet="postavlenniy_tovar">
+          <ScalarProperty Name="id_postavlenniy_tovar" ColumnName="id_postavlenniy_tovar" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="count" ColumnName="count" />
+          <ScalarProperty Name="date_postav" ColumnName="date_postav" />
+          <ScalarProperty Name="id_postavshik" ColumnName="id_postavshik" />
+          <ScalarProperty Name="id_prihodnoy_nakladnoy" ColumnName="id_prihodnoy_nakladnoy" />
+          <ScalarProperty Name="price_one_product" ColumnName="price_one_product" />
+          <ScalarProperty Name="summ" ColumnName="summ" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="postavshiki">
+      <EntityTypeMapping TypeName="skald_dbModel.postavshiki">
+        <MappingFragment StoreEntitySet="postavshiki">
+          <ScalarProperty Name="id_postavshiki" ColumnName="id_postavshiki" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="addres" ColumnName="addres" />
+          <ScalarProperty Name="contact" ColumnName="contact" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="prodanniy_tovar">
+      <EntityTypeMapping TypeName="skald_dbModel.prodanniy_tovar">
+        <MappingFragment StoreEntitySet="prodanniy_tovar">
+          <ScalarProperty Name="price_one" ColumnName="price_one" />
+          <ScalarProperty Name="id_prodanniy_tovar" ColumnName="id_prodanniy_tovar" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="count" ColumnName="count" />
+          <ScalarProperty Name="id_klient" ColumnName="id_klient" />
+          <ScalarProperty Name="date_prodazhi" ColumnName="date_prodazhi" />
+          <ScalarProperty Name="perevozchik" ColumnName="perevozchik" />
+          <ScalarProperty Name="sum" ColumnName="sum" />
+          <ScalarProperty Name="id_tovarnoy_nakladnoy" ColumnName="id_tovarnoy_nakladnoy" />
+          <ScalarProperty Name="id_postavlenniy_tovar" ColumnName="id_postavlenniy_tovar" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="skald_dbModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tovar__nalichii">
+      <EntityTypeMapping TypeName="skald_dbModel.tovar__nalichii">
+        <MappingFragment StoreEntitySet="tovar_ nalichii">
+          <ScalarProperty Name="id_tovar_vnalichii" ColumnName="id_tovar_vnalichii" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="count" ColumnName="count" />
+          <ScalarProperty Name="id_postavlenniy_tovar" ColumnName="id_postavlenniy_tovar" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
